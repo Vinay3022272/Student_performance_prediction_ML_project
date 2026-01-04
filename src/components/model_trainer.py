@@ -103,6 +103,7 @@ class ModelTrainer:
             logging.info(f"Best model found: '{best_model_name}'")
             logging.info(f"Best model Score: {best_model_score}")
 
+            best_model.fit(X_train, y_train)
         
 
             save_object(
@@ -110,9 +111,8 @@ class ModelTrainer:
                 obj=best_model
             )
             
-            best_model.fit(X_train, y_train)
-            predicted = best_model.predict(X_test)
 
+            predicted = best_model.predict(X_test)
             r2 = r2_score(y_test, predicted)
             return r2, best_model_name
         
